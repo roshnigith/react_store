@@ -5,12 +5,13 @@ const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
+const cors = require("cors");
 
 
 const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
-
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoute);
@@ -21,7 +22,7 @@ app.use("/api/orders", orderRoute);
 
 const startServer = async () => {
   await connectDB();
-  app.listen(process.env.PORT || 5000, () => {
+  app.listen(process.env.PORT || 5001, () => {
     console.log("backend is running!!");
   });
 };
